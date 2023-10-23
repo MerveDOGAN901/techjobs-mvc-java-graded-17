@@ -34,7 +34,7 @@ public class ListController {
         tableChoices.put("coreCompetency", JobData.getAllCoreCompetency());
     }
 
-    @GetMapping(value = "")
+    @RequestMapping(value = "")
     public String list(Model model) {
         model.addAttribute("columns", columnChoices);
         model.addAttribute("tableChoices", tableChoices);
@@ -46,7 +46,7 @@ public class ListController {
         return "list";
     }
 
-    @GetMapping(value = "jobs")
+    @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam(required = false) String value) {
         ArrayList<Job> jobs;
         if (column.equals("all")){

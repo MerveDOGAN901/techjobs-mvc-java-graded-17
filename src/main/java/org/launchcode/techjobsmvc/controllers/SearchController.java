@@ -10,7 +10,7 @@ import static org.launchcode.techjobsmvc.controllers.ListController.columnChoice
 import java.util.ArrayList;
 import org.launchcode.techjobsmvc.models.Job;
 import org.launchcode.techjobsmvc.models.JobData;
-
+import java.util.HashMap;
 /**
  * Created by LaunchCode
  */
@@ -26,19 +26,24 @@ public class SearchController {
 
     // TODO #3 - Create a handler to process a search request and render the updated search view.
 
-    @PostMapping(value = "results")
+    @PostMapping ("/results")
     public String listJobsByColumnAndValue(Model model, @RequestParam String searchType, @RequestParam String searchTerm) {
         ArrayList<Job> jobs;
-        if (searchType.toLowerCase().equals("all")) {
+        String title;
+
+        if ("all".equalsIgnoreCase(searchType)) {
             jobs = JobData.findByValue(searchTerm);
-            model.addAttribute("title", "Jobs containing: " + searchTerm + " (in all categories)");
+            title = "Jobs containing: " + searchTerm + " (in all categories)";
         } else {
             jobs = JobData.findByColumnAndValue(searchType, searchTerm);
-            model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + ": " + searchTerm);
+            title = "Jobs with " + searchType + ": " + searchTerm;
         }
+
+        model.addAttribute("title", title);
         model.addAttribute("jobs", jobs);
         model.addAttribute("columns", columnChoices);
-        return "list-jobs";
- }
-}
 
+        return "list-jobs";
+    }
+
+}

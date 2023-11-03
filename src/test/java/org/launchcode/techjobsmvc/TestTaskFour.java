@@ -97,7 +97,7 @@ public class TestTaskFour {
                 .andExpect(xpath("//table[contains(@class, 'job-listing')][1]").exists())
                 .andExpect(xpath("//table[contains(@class, 'job-listing')][2]").exists())
                 .andExpect(xpath("//table[contains(@class, 'job-listing')][3]").exists())
-                .andExpect(xpath("//table[contains(@class, 'job-listing')][1]").doesNotExist());
+                .andExpect(xpath("//table[contains(@class, 'job-listing')][4]").doesNotExist());
     }
 
 }

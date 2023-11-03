@@ -8,30 +8,46 @@
 
 <div class="container body-content"></div>
 
-  <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+<h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-  <!-- TODO #1 - Use a loop to display job results in a table. -->
+<!-- TODO #1 - Use a loop to display job results in a table. -->
 
-    <table class="job-listing">
+<th:block>
+    <table th:each="job : ${jobs}" class="job-listing">
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Employer</th>
-            <th>Location</th>
-            <th>Position</th>
-            <th>Skill</th>
-        </tr>
-        <tr th:if="${not #lists.isEmpty(jobs)}" th:each="job : ${jobs}">
+            <td>ID</td>
             <td th:text="${job.getId()}"></td>
+        </tr>
+        <tr>
+            <td>Name</td>
             <td th:text="${job.getName()}"></td>
+        </tr>
+        <tr>
+            <td>Employer</td>
             <td th:text="${job.getEmployer()}"></td>
+        </tr>
+        <tr>
+            <td>Location</td>
             <td th:text="${job.getLocation()}"></td>
+        </tr>
+        <tr>
+            <td>Position Type</td>
             <td th:text="${job.getPositionType()}"></td>
+        </tr>
+        <tr>
+            <td>Skill</td>
             <td th:text="${job.getCoreCompetency()}"></td>
         </tr>
-        <tr th:if="${#lists.isEmpty(jobs)}">
-            <td colspan="6">No results found.</td>
-        </tr>
     </table>
+</th:block>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
